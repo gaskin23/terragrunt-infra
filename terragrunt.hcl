@@ -6,9 +6,9 @@ remote_state {
   }
 
   config = {
-    profile = "anton"
-    role_arn = "arn:aws:iam::424432388155:role/terraform"
-    bucket = "antonputra-terraform-state"
+    profile = "terraform"
+    role_arn = "arn:aws:iam::211125642696:role/terraform"
+    bucket = "gaskin-terraform-state"
 
     key = "${path_relative_to_include()}/terraform.tfstate"
     region         = "us-east-1"
@@ -24,11 +24,10 @@ generate "provider" {
   contents = <<EOF
 provider "aws" {
   region  = "us-east-1"
-  profile = "anton"
+  profile = "terraform"
   
   assume_role {
-    session_name = "leson-160"
-    role_arn = "arn:aws:iam::424432388155:role/terraform"
+    role_arn = "arn:aws:iam::211125642696:role/terraform"
   }
 }
 EOF
