@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:antonputra/infrastructure-modules.git//kubernetes-addons?ref=kubernetes-addons-v0.0.1"
+  source = "git::https://github.com/gaskin23/terraform-modules.git//kubernetes-addons?ref=kubernetes-addons-v0.0.1"
 }
 
 include "root" {
@@ -26,7 +26,7 @@ dependency "eks" {
 
   mock_outputs = {
     eks_name            = "demo"
-    openid_provider_arn = "arn:aws:iam::123456789012:oidc-provider"
+    openid_provider_arn = "arn:aws:iam::211125642696:oidc-provider"
   }
 }
 
