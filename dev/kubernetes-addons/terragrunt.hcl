@@ -1,5 +1,5 @@
 terraform {
-  source = "git::https://github.com/gaskin23/guardian-terraform.git//kubernetes-addons?ref=v0.0.4"
+  source = "git::https://github.com/gaskin23/guardian-terraform.git//kubernetes-addons?ref=v0.0.7"
 }
 
 include "root" {

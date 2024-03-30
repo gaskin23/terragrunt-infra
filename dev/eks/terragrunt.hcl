@@ -1,5 +1,5 @@
 terraform {
-  source = "git::https://github.com/gaskin23/guardian-terraform.git//eks?ref=v0.0.4"
+  source = "git::https://github.com/gaskin23/guardian-terraform.git//eks?ref=v0.0.7"
 }
 
 include "root" {
@@ -23,9 +23,9 @@ inputs = {
       capacity_type  = "ON_DEMAND"
       instance_types = ["t3a.xlarge"]
       scaling_config = {
-        desired_size = 1
+        desired_size = 2
         max_size     = 10
-        min_size     = 0
+        min_size     = 2
       }
     }
   }

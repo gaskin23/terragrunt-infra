@@ -7,8 +7,8 @@ remote_state {
 
   config = {
     profile = "terraform"
-    role_arn = "arn:aws:iam::211125642696:role/terraform"
-    bucket = "gaskin-terraform-state"
+    role_arn = "arn:aws:iam::851725307340:role/terraform"
+    bucket = "guardian-terraform-state"
 
     key = "${path_relative_to_include()}/terraform.tfstate"
     region         = "us-east-1"
@@ -25,9 +25,9 @@ generate "provider" {
 provider "aws" {
   region  = "us-east-1"
   profile = "terraform"
-  
+
   assume_role {
-    role_arn = "arn:aws:iam::211125642696:role/terraform"
+    role_arn = "arn:aws:iam::851725307340:role/terraform"
   }
 }
 EOF
