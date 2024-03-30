@@ -1,5 +1,5 @@
 terraform {
-  source = "git::https://github.com/gaskin23/terraform-modules.git//eks?ref=eks-v0.0.1"
+  source = "git::https://github.com/gaskin23/guardian-terraform.git//eks?ref=v0.0.4"
 }
 
 include "root" {
@@ -13,7 +13,7 @@ include "env" {
 }
 
 inputs = {
-  eks_version = "1.26"
+  eks_version = "1.29"
   env         = include.env.locals.env
   eks_name    = "demo"
   subnet_ids  = dependency.vpc.outputs.private_subnet_ids

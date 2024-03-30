@@ -1,5 +1,5 @@
 terraform {
-  source = "git::https://github.com/gaskin23/terraform-modules.git//kubernetes-addons?ref=kubernetes-addons-v0.0.1"
+  source = "git::https://github.com/gaskin23/guardian-terraform.git//kubernetes-addons?ref=v0.0.4"
 }
 
 include "root" {
@@ -25,8 +25,8 @@ dependency "eks" {
   config_path = "../eks"
 
   mock_outputs = {
-    eks_name            = "demo"
-    openid_provider_arn = "arn:aws:iam::211125642696:oidc-provider"
+    eks_name            = "guardian"
+    openid_provider_arn = "arn:aws:iam::851725307340:oidc-provider"
   }
 }
 
