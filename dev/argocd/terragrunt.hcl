@@ -1,5 +1,5 @@
 terraform {
-  source = "git::https://github.com/gaskin23/guardian-terraform.git//kubernetes-addons?ref=v1.0.2"
+  source = "git::https://github.com/gaskin23/guardian-terraform.git//argocd?ref=v1.0.3"
 }
 
 include "root" {
@@ -14,11 +14,10 @@ include "env" {
 
 inputs = {
   env      = include.env.locals.env
-  eks_name = dependency.eks.outputs.eks_name
-  openid_provider_arn = dependency.eks.outputs.openid_provider_arn
-
-  enable_cluster_autoscaler      = true
-  cluster_autoscaler_helm_verion = "9.28.0"
+  argocd_k8s_namespace = "argo-cd"
+  argocd_chart_version = "5.53.8"
+  argocd_chart_name = argo-cd
+  
 }
 
 dependency "eks" {
