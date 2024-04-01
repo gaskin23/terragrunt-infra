@@ -16,7 +16,7 @@ inputs = {
   env      = include.env.locals.env
   argocd_k8s_namespace = "argo-cd"
   argocd_chart_version = "5.53.8"
-  argocd_chart_name = argo-cd
+  argocd_chart_name = "argo-cd"
   
 }
 
