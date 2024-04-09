@@ -6,8 +6,8 @@ remote_state {
   }
 
   config = {
-    profile = "anton"
-    role_arn = "arn:aws:iam::851725307340:role/terraform"
+    profile = "guardian"
+    role_arn = "arn:aws:iam::934643182396:role/terraform"
     bucket = "guardian-terraform-state"
 
     key = "${path_relative_to_include()}/terraform.tfstate"
@@ -24,10 +24,10 @@ generate "provider" {
   contents = <<EOF
 provider "aws" {
   region  = "us-east-1"
-  profile = "anton"
+  profile = "guardian"
 
   assume_role {
-    role_arn = "arn:aws:iam::851725307340:role/terraform"
+    role_arn = "arn:aws:iam::934643182396:role/terraform"
   }
 }
 EOF

@@ -1,5 +1,5 @@
 terraform {
-  source = "git::https://github.com/gaskin23/guardian-terraform.git//argocd?ref=v1.5.8"
+  source = "git::https://github.com/gaskin23/guardian-terraform.git//rds?ref=v1.5.9"
 }
 
 include "root" {
@@ -13,14 +13,29 @@ include "env" {
 }
 
 inputs = {
-  env      = include.env.locals.env
+  rds_allocated_storage    = 20
+  rds_storage_type         = "gp2"
+  rds_engine               = "postgres"
+  rds_engine_version       = "15.6"
+  rds_instance_class       = "db.t3.micro"
+  rds_db_name              = "guardiandb"
+  rds_username             = "postgres"
+  rds_db_subnet_group_name = "guardian" 
   eks_name = dependency.eks.outputs.eks_name
-  argocd_k8s_namespace = "argocd"
-  argocd_chart_version = "6.7.7"
-  argocd_chart_name = "argo-cd"
-  openid_provider_arn = dependency.eks.outputs.openid_provider_arn
-  
+
+  # Assuming the VPC ID and subnet IDs are outputs from the VPC and subnet configurations
+  private_subnet_ids = dependency.vpc.outputs.private_subnet_ids
+
 }
+
+dependency "vpc" {
+  config_path = "../vpc"
+
+  mock_outputs = {
+    private_subnet_ids = ["subnet-1234", "subnet-5678"]
+  }
+}
+
 
 dependency "eks" {
   config_path = "../eks"

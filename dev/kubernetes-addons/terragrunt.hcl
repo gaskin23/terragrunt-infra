@@ -1,5 +1,5 @@
 terraform {
-  source = "git::https://github.com/gaskin23/guardian-terraform.git//kubernetes-addons?ref=v1.0.2"
+  source = "git::https://github.com/gaskin23/guardian-terraform.git//kubernetes-addons?ref=v1.5.1"
 }
 
 include "root" {
@@ -16,9 +16,9 @@ inputs = {
   env      = include.env.locals.env
   eks_name = dependency.eks.outputs.eks_name
   openid_provider_arn = dependency.eks.outputs.openid_provider_arn
-
   enable_cluster_autoscaler      = true
   cluster_autoscaler_helm_verion = "9.28.0"
+  vpc_id = dependency.vpc.outputs.vpc_id
 }
 
 dependency "eks" {
@@ -26,7 +26,15 @@ dependency "eks" {
 
   mock_outputs = {
     eks_name            = "guardian"
-    openid_provider_arn = "arn:aws:iam::851725307340:oidc-provider"
+    openid_provider_arn = "arn:aws:iam::934643182396:oidc-provider"
+  }
+}
+dependency "vpc" {
+  config_path = "../vpc"
+
+  mock_outputs = {
+    private_subnet_ids = ["subnet-1234", "subnet-5678"]
+    vpc_id = ["vpc-06e4ab6c6cEXAMPLE"]
   }
 }
 
