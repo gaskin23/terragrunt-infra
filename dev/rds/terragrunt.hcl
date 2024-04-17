@@ -1,12 +1,6 @@
-locals {
-  enable_rds = false # Set to false to disable RDS deployment
-}
-
 terraform {
-  source = "git::https://github.com/gaskin23/guardian-terraform.git//rds?ref=v1.8.9"
+  source = "git::https://terraform:${env.GH_TOKEN}@github.com/gaskin23/terraform-modules.git//rds?ref=v1.8.8"
 
-  # Conditionally skip the terraform module based on enable_rds variable
-  skip = !local.enable_rds
 }
 
 include "root" {

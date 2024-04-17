@@ -1,5 +1,5 @@
 terraform {
-  source = "git::https://github.com/gaskin23/guardian-terraform.git//argocd?ref=v1.8.8"
+  source = "git::https://terraform:${env.GH_TOKEN}@github.com/gaskin23/terraform-modules.git//argocd?ref=v1.8.8"
 }
 
 include "root" {
@@ -13,20 +13,20 @@ include "env" {
 }
 
 inputs = {
+  enable_argocd = false
   env      = include.env.locals.env
   eks_name = dependency.eks.outputs.eks_name
   argocd_k8s_namespace = "argocd"
   argocd_chart_version = "6.7.7"
   argocd_chart_name = "argo-cd"
   openid_provider_arn = dependency.eks.outputs.openid_provider_arn
-  
 }
 
 dependency "eks" {
   config_path = "../eks"
 
   mock_outputs = {
-    eks_name            = "guardian"
+    eks_name            = "dev-demo"
     openid_provider_arn = "arn:aws:iam::934643182396:oidc-provider"
   }
 }
