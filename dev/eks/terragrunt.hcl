@@ -1,5 +1,5 @@
 terraform {
-  source = "git::https://github.com/gaskin23/guardian-terraform.git//eks?ref=v1.5.1"
+  source = "git::https://github.com/gaskin23/guardian-terraform.git//eks?ref=v1.8.7"
 }
 
 include "root" {
@@ -17,7 +17,7 @@ inputs = {
   env         = include.env.locals.env
   eks_name    = "demo"
   subnet_ids  = dependency.vpc.outputs.private_subnet_ids
-
+  vpc_id = dependency.vpc.outputs.vpc_id
   node_groups = {
     general = {
       capacity_type  = "ON_DEMAND"
@@ -36,5 +36,6 @@ dependency "vpc" {
 
   mock_outputs = {
     private_subnet_ids = ["subnet-1234", "subnet-5678"]
+    vpc_id = ["vpc-06e4ab6c6cEXAMPLE"]
   }
 }

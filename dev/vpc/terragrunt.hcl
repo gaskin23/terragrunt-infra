@@ -1,5 +1,5 @@
 terraform {
-  source = "git::https://github.com/gaskin23/guardian-terraform.git//vpc?ref=v1.5.1"
+  source = "git::https://github.com/gaskin23/guardian-terraform.git//vpc?ref=v1.6.0"
 }
 
 include "root" {
